@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="other/node_modules/bootstrap3/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="other/node_modules/bootstrap-table/dist/bootstrap-table.css">
+
+    <script type="text/javascript" src="other/node_modules/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="other/node_modules/bootstrap-table/dist/bootstrap-table.js"></script>
+    <script type="text/javascript"
+            src="other/node_modules/bootstrap-table/dist/locale/bootstrap-table-zh-CN.js"></script>
+    <script>
+        $(function () {
+            findPostInfo();
+        });
+
+        function findPostInfo() {
+            var name = sessionStorage.getItem("name");
+            var postid = sessionStorage.getItem("postid");
+            //alert(encodeURI(name));
+            $("#tb").bootstrapTable({
+                url:"findPostInfo.do?name="+encodeURI(encodeURI(name))+"&postid="+postid,
+              /*  data:{"uname": name,
+                    "postid": postid},*/
+               // contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+                columns:[
+                    {title:"雇员编号",
+                        align:"center",
+                        field:"id"
+                    },
+                    {title:"雇员职位",
+                        field:"post_name"
+                    },
+                    {title:"雇员姓名",
+                        field:"emp_name"
+                    },
+                    {title:"雇员性别",
+                        field:"emp_sex"
+                    },
+                    {title:"雇员年龄",
+                        field:"emp_age"
+                    },
+                    {title:"所属部门",
+                        field:"emp_depart"
+                    },
+                    {title:"员工工龄(年)",
+                        field:"emp_year"
+                    },
+                    ]
+            });
+           /* $.ajax({
+                url: "findPostInfo.do",
+                method: "get",
+                data: {
+                    "name": encodeURIComponent(encodeURIComponent(name)),
+                    "postid": postid
+                },
+               // contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+                success: function (data) {
+
+                    $("#tb").bootstrapTable("load",JSON.parse(data));
+                },
+                error: function () {
+
+                }
+            });*/
+        }
+
+    </script>
+</head>
+<body>
+<div class="container">
+<table id="tb" >
+   <!-- <thead>
+    <tr>
+        <th data-field="id" data-checkbox="true">ID</th>
+        <th data-field="post_name" data-align="center">岗位名称</th>
+        <th data-field="emp_name" data-align="center">员工姓名</th>
+        <th data-field="emp_sex" data-align="center">员工姓名</th>
+        <th data-field="emp_age" data-align="center">员工年龄</th>
+        <th data-field="emp_depart" data-align="center">员工部门</th>
+        <th data-field="emp_year" data-align="center">员工年龄</th>
+    </tr>
+    </thead>-->
+</table>
+</div>
+</body>
+</html>
